@@ -32,6 +32,8 @@ class IndexController extends HomebaseController {
 	
     //首页 小夏是老猫除外最帅的男人了
 	public function index() {
+        $data=M('taobaoproduct')->limit(40)->select();
+        $this->assign('list',$data);
     	$this->display(":index");
     }
 

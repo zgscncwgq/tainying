@@ -96,7 +96,6 @@ class TbproductController extends Controller{
 				$paremat['tk_rate']=$vl['tk_rate'];
 
 				$paremat['uptime']=time();
-
 				M('taobaoproduct')->where("proid=%s",$vl["num_iid"])->save($paremat);
 			}
 			

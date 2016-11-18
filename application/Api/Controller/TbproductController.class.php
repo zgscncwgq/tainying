@@ -34,6 +34,25 @@ class TbproductController extends Controller{
 		$this->ajaxreturn($data);
     }
 
+    public function userpro(){
+    	$userid=I("post.userid");
+    	$result['status']=0;
+    	$result['msg']="数据异常";
+    	if(!$userid){
+    		$this->ajaxreturn($result);
+    		exit();	
+    	}
+    	$where['up.userid']=$userid;
+        $data=M('taobaoproduct')->alias("td")->join('__USERPRO__ as up on up.proid=td.proid','left')->where($where)->limit(40)->select();
+        if($data){
+        	$sul=M("user")->where("id=".I("post.userid"))->find();
+        	session('user',$sul);
+        	$result['msg']="加载成功";
+        	$result['status']=1;
+        }
+    	$this->ajaxreturn($data);
+    }
+
     public function proyun(){
     	$data['status']=0;
 		$data['msg']="非法数据";

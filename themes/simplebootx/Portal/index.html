@@ -139,12 +139,21 @@ $(function() {
 	});
 	$(".joblib").click(function(){
 		var url="/index.php?m=index&a=ajaxlib&proid="+$(this).attr('t');
+		var ht=$(this);
 		$.get(url,function(data){
 			  if(data['status']==1){
 			  	var sum=$(".suliang b").html();
 				$(".suliang b").html(parseInt(sum)+1);
+				ht.html('已加入选品库');
+				ht.attr("style","color:#f50");
 			  }else{
-			  	alert(data['msg']);
+			  	 if(data['status']==3){
+			  	 	ht.html('已加入选品库');
+					ht.attr("style","color:#f50");
+			  	 }else{
+			  	 	alert(data['msg']);
+			  	 }
+			  	
 			  }
 		})
 		

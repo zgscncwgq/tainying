@@ -63,6 +63,7 @@ class LoginController extends HomebaseController {
                 $session_login_http_referer=session('login_http_referer');
                 $redirect=empty($session_login_http_referer)?__ROOT__."/":$session_login_http_referer;
                 session('login_http_referer','');
+                $return["id"]=$result['id'];
                 $return["staus"]=1;
         		$return['error']="登录验证成功！";
             }else{

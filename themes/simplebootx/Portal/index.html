@@ -38,6 +38,9 @@
 				-o-border-radius: 0;
 				border-radius: 0;}
 			}
+
+			.ltfoot{border-top:1px solid #f0f0f0; height: 60px; line-height: 60px; position:fixed; bottom: 0px; width: 100%;background: #fff;z-index:999;}
+			.kucu{float:right;background: #f50; padding: 0px 40px; color:#fff; font-size: 16px;}
 		</style>
 	</head>
 <body class="body-white">
@@ -92,9 +95,9 @@ $home_slides=empty($home_slides)?$default_home_slides:$home_slides;
 			</div>
 			<div class="box-shop-info dxjh-guide-show" p-id="841"><div class="shop-title" _ie_fix_="" mx-mouseenter="showShopInfo(134363478,1)" mx-mouseleave="hideShopInfo(134363478)" p-id="842"><span class="shop-hd" p-id="843"><span class="pubfont icon-dianpu shop-icon" p-id="844"></span><a vclick-ignore="true" title="点击进入店铺推广详情页" href="/myunion.htm?#!/promo/self/shop_detail?userNumberId=134363478" data-spm-click="gostr=/alimama.11;locaid=dab027959" target="_blank" p-id="845" data-spm-anchor-id="a219t.7900221/10.1998910419.116"><span p-id="847">{$vo.nick}</span></a></span><div class="shop-bd" mx-vframe="true" p-id="848" id="mx_n_22"></div></div><div class="tags-container fr" p-id="849"><a href="#" data-login="true" mx-click="showDxjh(134363478,536611606224)" data-spm-click="gostr=/alimama.11;locaid=d0878f2b0" title="点击申请定向计划" class="tag tag-plan mr10" p-id="850" data-spm-anchor-id="a219t.7900221/10.1998910419.117"><span class="icon-wrap" p-id="851"><em class="pubfont icon-dingxiangjihua" p-id="852"></em><em class="pubfont icon-gengduoyongjin" p-id="853"></em></span></a><if condition="$vo.user_type eq 1"><span class="tag tag-tmall mr10" title="天猫店铺" p-id="854"></span></if></div></div>
 			<div class="box-btn-group" p-id="855">
-			<a href="javascript:void(0);" class="box-btn-left">立即推广</a>
+			<a href="javascript:void(0);" class="box-btn-left joblib" t="{$vo.proid}">加入选品库</a>
 			<em class="box-btn-divid" p-id="858"></em>
-			<a href="javascript:void(0);" class="box-btn-right"><span class="pubfont" p-id="860"></span>选取</a></div></div>
+			<a href="{$vo.item_url}" class="box-btn-right"><span class="pubfont" p-id="860"></span>查看</a></div></div>
 </volist>		
 
 
@@ -107,9 +110,20 @@ $home_slides=empty($home_slides)?$default_home_slides:$home_slides;
 </div>
 
 <div class="container">
-<tc_include file="Public:footer"/>
+	<tc_include file="Public:footer"/>
 </div>
-
+<div style="height: 60px; line-height: 60px">
+</div>
+<div class="ltfoot">
+	<div class="container">
+	   <span class="suliang">
+	   已选取<b>{$count|default=0}</b>/100个商品
+	   </span>
+	   <a class="kucu" href="{:U('Index/xplib')}">
+	   	 我的选品库
+	   </a>
+	</div>
+</div>
 <tc_include file="Public:scripts"/>
 <script src="__TMPL__Public/assets/js/slippry.min.js"></script>
 <script>
@@ -122,6 +136,18 @@ $(function() {
 		pause: 3000,
 		auto: true,
 		preload: 'visible'
+	});
+	$(".joblib").click(function(){
+		var url="/index.php?m=index&a=ajaxlib&proid="+$(this).attr('t');
+		$.get(url,function(data){
+			  if(data['status']==1){
+			  	var sum=$(".suliang b").html();
+				$(".suliang b").html(parseInt(sum)+1);
+			  }else{
+			  	alert(data['msg']);
+			  }
+		})
+		
 	});
 });
 </script>

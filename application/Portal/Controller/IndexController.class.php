@@ -33,8 +33,110 @@ class IndexController extends HomebaseController {
     //首页 小夏是老猫除外最帅的男人了
 	public function index() {
         $data=M('taobaoproduct')->limit(40)->select();
+        if(session("user")['id']){
+            $where['userid']=session("user")['id'];
+            $count=M("userpro")->where($where)->count();
+        }
+        $this->assign('count',$count);
         $this->assign('list',$data);
     	$this->display(":index");
+    }
+    public function xplib(){
+        if(!session("user")['id']){
+           $this->redirect("user/login/index");
+        }
+       
+        $map['userid']=session("user")['id'];
+        $count=M("userpro")->where($map)->count();
+
+        $this->assign('count',$count);
+        $where['up.userid']=session("user")['id'];
+        $data=M('taobaoproduct')->alias("td")->join('__USERPRO__ as up on up.proid=td.proid','left')->where($where)->limit(40)->select();
+        $this->assign('list',$data);
+        $this->display(":xplib");
+    }
+
+    public function ajaxlibdel(){
+        $user=session("user");
+        $return['status']=0;
+        $return['msg']="发生错误";
+
+        if(!$user){
+            $return['status']=2;
+            $return['msg']="请先登入";
+            $this->ajaxreturn($return);
+            exit();
+        }
+        $proid=I("proid");
+        if(!$proid){
+            $return['status']=2;
+            $return['msg']="请选择产品";
+            $this->ajaxreturn($return);
+            exit();
+        }
+
+        $userid=$user['id'];
+        $where['userid']=$userid;
+        $where['proid']=I("proid");
+        $count=M("userpro")->where($where)->count();
+ 
+        if($count==0){
+            $return['status']=3;
+            $return['msg']="选品库未找到产品";
+            $this->ajaxreturn($return);
+            exit();
+        }
+
+        $sul=M("userpro")->where($where)->delete();
+
+        if($sul){
+             $return['status']=1;
+             $return['msg']="删除成功";
+        }
+        $this->ajaxreturn($return);
+    }
+    public function ajaxlib(){
+        $user=session("user");
+        $return['status']=0;
+        $return['msg']="发生错误";
+
+        if(!$user){
+            $return['status']=2;
+            $return['msg']="请先登入";
+            $this->ajaxreturn($return);
+            exit();
+        }
+        $proid=I("proid");
+        if(!$proid){
+            $return['status']=2;
+            $return['msg']="请选择产品";
+            $this->ajaxreturn($return);
+            exit();
+        }
+
+        $userid=$user['id'];
+        $where['userid']=$userid;
+        $where['proid']=I("proid");
+        $count=M("userpro")->where($where)->count();
+ 
+        if($count>0){
+            $return['status']=3;
+            $return['msg']="已加入产品库";
+            $this->ajaxreturn($return);
+            exit();
+        }
+
+        $data['createtime']=time();
+        $data['status']=1;
+        $data['proid']=I("proid");
+        $data['userid']=$userid;
+        $sul=M("userpro")->add($data);
+
+        if($sul){
+             $return['status']=1;
+             $return['msg']="增加成功";
+        }
+        $this->ajaxreturn($return);
     }
 
     public function test()

@@ -66,10 +66,10 @@ class LoginController extends HomebaseController {
                 $return["staus"]=1;
         		$return['error']="登录验证成功！";
             }else{
-                $return['error']="用户名不存在！";
+                $return['error']="密码错误！";
             }
         }else{
-        	 $return['error']="用户名不存在！";
+        	 $return['error']="用户名不存在！".I("post.username");
         }
         return $this->ajaxreturn($return);
 	}

@@ -131,8 +131,10 @@ class TbproductController extends Controller{
 		$sul=M('taobaoproduct')->where("proid='%s'",$numIids)->count();
 		if($sul<=0){
 			$sul=M('taobaoproduct')->add($paremat);
+			$paremat['status']=1;
 			$this->ajaxreturn($paremat);
 		}else{
+			$paremat['status']=2;
 			$this->ajaxreturn($paremat);
 		}
 	}

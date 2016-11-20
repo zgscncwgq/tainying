@@ -99,7 +99,10 @@ class TbproductController extends Controller{
 
 		
 		if($suldata){
+
 				$vl=$tdata["results"]["n_tbk_item"];
+				dump($vl);
+				exit();
 
 				$paremat["num_iid"]=$vl["num_iid"];//商品ID
 				$paremat["item_url"]=$vl["item_url"];//商品地址

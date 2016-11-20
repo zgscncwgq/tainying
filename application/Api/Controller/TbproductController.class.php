@@ -84,26 +84,27 @@ class TbproductController extends Controller{
 		}
 		include SITE_PATH."simplewind/Core/Library/Taobao/TopSdk.php";
 		$numIids=I("proid");
+
 		$c = new \TopClient;
 		$c->appkey = $this->appkey;
 		$c->secretKey = $this->secret;
-
+		$c->format="json";
 		$req = new \TbkItemInfoGetRequest;
 		$req->setFields("num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,nick,seller_id,volume,tk_rate");
 		
 		$req->setPlatform("1");
 		$req->setNumIids($numIids);
 		$resp = $c->execute($req);
-		$suldata=json_encode($resp);
-		$tdata=json_decode($suldata,true);
-
-		
-		if($suldata){
-
-				$vl=$tdata["results"]["n_tbk_item"];
-				dump($vl);
-				exit();
-
+		$suldata=json_encode($resp,true);
+		$suldata=json_decode($suldata,true);
+		if($suldata){	
+				
+		        $vl=$suldata["results"]["n_tbk_item"][0];	
+		      
+				if(!$vl){
+					$this->ajaxreturn($result);
+					exit();
+				}
 				$paremat["num_iid"]=$vl["num_iid"];//商品ID
 				$paremat["item_url"]=$vl["item_url"];//商品地址
 

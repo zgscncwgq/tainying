@@ -74,6 +74,35 @@ class TbproductController extends Controller{
     	$data=M('taobaoproduct')->limit(80)->select();
     	$this->ajaxreturn($data);
     }
+
+    public function adddata(){
+    	$data['status']=0;
+		$data['msg']="非法数据";
+        if(IS_POST){
+           $data['status']=1;
+		   $data['data']=implode(',',$_POST);
+		   $dataPost=explode(',', $data['data']) ;
+		   	   foreach ($dataPost as $ky => $vl) {
+			   	   	try{
+			   	   		$yh=explode('-',$vl);
+			   	   		if($yh[1]){
+			   	   			$parema['coupon']=$yh[1];	
+			   	   		}
+
+			   	   		$yh=explode(':',$vl);
+			   	   		if($yh[1]){
+			   	   			$parema['proid']=$yh[1];	
+			   	   		}
+			   	   		$parema['proid']=$yh[0];
+			   	   		$parema['crtime']=time();			   	   		
+			   	   		$sul=M('taobaoproduct')->add($parema);
+
+			   	   	}catch(Exception $e){
+						
+					}
+		   	   }
+        }
+    }
 	
 	public function addonelink(){
 		$result['status']=0;

@@ -51,7 +51,7 @@ class TbproductController extends Controller{
     public function receiveProduct(){
 		$data['status']=0;
 		$data['msg']="非法数据";
-       // if(IS_POST){
+        if(IS_POST){
        	   $suldel=M('taobaoproduct')->execute("DELETE FROM ty_taobaoproduct");
        	 
 		   $_POST[]="16092810656:35-3";
@@ -106,10 +106,7 @@ class TbproductController extends Controller{
 		   			}
 		   		}
 		   	}
-
-
-
-     //   }
+        }
 
 		$this->ajaxreturn($numid);
     }

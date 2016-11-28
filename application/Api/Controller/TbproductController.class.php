@@ -90,7 +90,7 @@ class TbproductController extends Controller{
 		   			for ($i=0; $i <ceil($num/40); $i++) { 
 		   				$subary=array_slice($numid,$i*40,40);
 		   				
-		   				$url="http://www.tianying.com/index.php?g=Api&m=Tbproduct&a=getTbproduct";
+		   				$url="http://cf.7zao.com/index.php?g=Api&m=Tbproduct&a=getTbproduct";
 		   				$data['name']=$i;
 		   				$data=file_get_contents($url);
 		   				//$aryday=json_encode($data,true);

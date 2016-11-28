@@ -32,7 +32,7 @@ class IndexController extends HomebaseController {
 	
     //首页 小夏是老猫除外最帅的男人了
 	public function index() {
-        $data=M('taobaoproduct')->limit(40)->select();
+        $data=M('taobaoproduct')->limit(60)->select();
         if(session("user")['id']){
             $where['userid']=session("user")['id'];
             $count=M("userpro")->where($where)->count();

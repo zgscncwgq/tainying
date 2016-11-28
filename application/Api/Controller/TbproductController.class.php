@@ -122,7 +122,7 @@ class TbproductController extends Controller{
     }
     //得到用户自选产品
     public function userpro(){
-    	$userid=I("post.userid");
+    	$userid=I("userid");
     	$result['status']=0;
     	$result['msg']="数据异常";
     	if(!$userid){
@@ -131,6 +131,7 @@ class TbproductController extends Controller{
     	}
     	$where['up.userid']=$userid;
         $data=M('taobaoproduct')->alias("td")->join('__USERPRO__ as up on up.proid=td.proid','left')->where($where)->limit(40)->select();
+       
         if($data){
         	$sul=M("users")->where("id=".$userid)->find();
         	session('user',$sul);

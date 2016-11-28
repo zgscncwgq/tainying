@@ -358,6 +358,12 @@ class TbproductController extends Controller{
 		return $tdata;
     }
 
+
+    public function delpro(){
+    	M("taobaoproduct")->delete();
+    	M('userpro')->delete();
+    }
+
     public function curlget($url){
     	$ch = curl_init();
 	　　curl_setopt($ch, CURLOPT_URL, $url);

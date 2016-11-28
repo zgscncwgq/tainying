@@ -374,5 +374,16 @@ class TbproductController extends Controller{
 		return $output;
     }
 
+    public function info(){
+    	for ($i=0; $i <100 ; $i++) { 
+    		 $url="http://cf.7zao.com/index.php?g=Api&m=Tbproduct&a=getTbproduct";
+
+        $data=file_get_contents($url);
+        dump($data);
+    	}
+       
+
+    }
+
 }
 

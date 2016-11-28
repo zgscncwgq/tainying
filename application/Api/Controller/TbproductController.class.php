@@ -122,7 +122,7 @@ class TbproductController extends Controller{
     }
     //得到用户自选产品
     public function userpro(){
-    	$userid=I("userid");
+    	$userid=I("post.userid");
     	$result['status']=0;
     	$result['msg']="数据异常";
     	if(!$userid){

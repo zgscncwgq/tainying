@@ -81,17 +81,20 @@ $home_slides=empty($home_slides)?$default_home_slides:$home_slides;
 					</a>
 				</p>
 			</div>
-			<!--
-			<div class="content-line tags-container" p-id="792">
-				<span class="tag tag-coupon" p-id="793">
-					<span class="icon" p-id="794"></span><span class="money" p-id="795"><span p-id="796">50</span>元</span>
-				</span>
-			</div><!---->
+			<empty name="$vo.coupon">
+				<div class="content-line tags-container" p-id="792">
+					<span class="tag tag-coupon" p-id="793">
+						<span class="icon" p-id="794"></span><span class="money" p-id="795"><span p-id="796">{$vo.coupon}</span>元</span>
+					</span>
+				</div>
+
+			</empty>
 			
+			</empty>
 			<div class="content-line clearfix mt5" p-id="798"><span class="fl color-d number number-16" p-id="799"><span class="yuan" p-id="801">￥</span><span class="integer" p-id="803">{$vo.zk_final_price}</span><span class="pointer" p-id="805">.</span><span class="decimal" p-id="807">00</span></span><span class="fr" p-id="809"><span class="color-l" p-id="810">月销：</span><span class="color-d" p-id="812"><span p-id="813">{$vo.volume}</span></span></span>
 			</div>
 			
-			<div class="content-line clearfix" p-id="814"><span class="fl color-brand" p-id="815"><span p-id="816">比率：</span><span class="number number-16" p-id="818"><span class="integer" p-id="820">5</span><span class="pointer" p-id="822">.</span><span class="decimal" p-id="824">50</span><span class="percent" p-id="826">%</span></span></span><span class="fr" p-id="828"><span class="color-l" p-id="829">佣金：</span><span class="number number-thin number-16" p-id="831"><span class="yuan" p-id="833">￥</span><span class="integer" p-id="835">30</span><span class="pointer" p-id="837">.</span><span class="decimal" p-id="839">35</span></span></span></div>
+			<div class="content-line clearfix" p-id="814"><span class="fl color-brand" p-id="815"><span p-id="816">比率：</span><span class="number number-16" p-id="818"><span class="integer" p-id="820">{$vo.commission|floor=###}</span><span class="pointer" p-id="822">.</span><span class="decimal" p-id="824">50</span><span class="percent" p-id="826">%</span></span></span><span class="fr" p-id="828"><span class="color-l" p-id="829">佣金：</span><span class="number number-thin number-16" p-id="831"><span class="yuan" p-id="833">￥</span><span class="integer" p-id="835">{$vo['commission']*($vo['commission']/100)|floor=###}</span><span class="pointer" p-id="837">.</span><span class="decimal" p-id="839">35</span></span></span></div>
 			</div>
 			<div class="box-shop-info dxjh-guide-show" p-id="841"><div class="shop-title" _ie_fix_="" mx-mouseenter="showShopInfo(134363478,1)" mx-mouseleave="hideShopInfo(134363478)" p-id="842"><span class="shop-hd" p-id="843"><span class="pubfont icon-dianpu shop-icon" p-id="844"></span><a vclick-ignore="true" title="点击进入店铺推广详情页" href="/myunion.htm?#!/promo/self/shop_detail?userNumberId=134363478" data-spm-click="gostr=/alimama.11;locaid=dab027959" target="_blank" p-id="845" data-spm-anchor-id="a219t.7900221/10.1998910419.116"><span p-id="847">{$vo.nick}</span></a></span><div class="shop-bd" mx-vframe="true" p-id="848" id="mx_n_22"></div></div><div class="tags-container fr" p-id="849"><a href="#" data-login="true" mx-click="showDxjh(134363478,536611606224)" data-spm-click="gostr=/alimama.11;locaid=d0878f2b0" title="点击申请定向计划" class="tag tag-plan mr10" p-id="850" data-spm-anchor-id="a219t.7900221/10.1998910419.117"><span class="icon-wrap" p-id="851"><em class="pubfont icon-dingxiangjihua" p-id="852"></em><em class="pubfont icon-gengduoyongjin" p-id="853"></em></span></a><if condition="$vo.user_type eq 1"><span class="tag tag-tmall mr10" title="天猫店铺" p-id="854"></span></if></div></div>
 			<div class="box-btn-group" p-id="855">

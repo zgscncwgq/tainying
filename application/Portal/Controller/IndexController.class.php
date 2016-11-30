@@ -32,15 +32,39 @@ class IndexController extends HomebaseController {
 	
     //首页 小夏是老猫除外最帅的男人了
 	public function index() {
-        $data=M('taobaoproduct')->limit(40)->select();
+        // $data=M('taobaoproduct')->limit(40)->select();
         if(session("user")['id']){
             $where['userid']=session("user")['id'];
             $count=M("userpro")->where($where)->count();
         }
+
+        // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
+        $list =M('taobaoproduct')->where('status=1')->order('proid')->page($_GET['p'].',40')->select();
+        $this->assign('list',$list);// 赋值数据集
+        $count      = M('taobaoproduct')->where('status=1')->count();// 查询满足要求的总记录数
+
+        $Page       = new \Think\Page($count,40);// 实例化分页类 传入总记录数和每页显示的记录数
+
+        $Page->setConfig('prev','<span class="btn-first btn btn-xlarge btn-white" bx-click="moveTo(0)" data-spm-anchor-id="a219t.7900221/10.1998910419.336">上一页</span>');
+        $Page->setConfig('next','<span class="btn-last btn btn-xlarge btn-white" bx-click="moveTo(2)" data-spm-anchor-id="a219t.7900221/10.1998910419.345">下一页</span>');
+
+        $Page->setConfig('num','<sapn bx-click="moveTo($link_page)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.342">{$link_page}</span>');
+
+        $Page->setConfig('first','<span class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.337">首页</span>');
+        $Page->setConfig('last','<span  class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.337">末页</span>');
+        $Page->lastSuffix=false;
+        $Page->setConfig('theme','%FIRST% %UP_PAGE%  %LINK_PAGE%  %DOWN_PAGE% %END%');
+
+        $show       = $Page->show();// 分页显示输出
+
+       
+        $this->assign('page',$show);// 赋值分页输出
+
         $this->assign('count',$count);
-        $this->assign('list',$data);
-    	$this->display(":index");
+        // $this->assign('list',$data);
+    	$this->display(":index");// 输出模板
     }
+
     public function xplib(){
         if(!session("user")['id']){
            $this->redirect("user/login/index");

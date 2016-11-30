@@ -105,8 +105,53 @@ $home_slides=empty($home_slides)?$default_home_slides:$home_slides;
 
 </div>
 
-<div  id="J_item_list">
-<div bx-name="app/exts/pagination/pagination" data-total="4000" data-limit="40" data-cursor="2">     <div class="pagination-new">     <div class="pagination">     <a href="javascript: void(0);" class="btn-first btn btn-xlarge btn-white" bx-click="moveTo(1)" data-spm-anchor-id="a219t.7900221/10.1998910419.3306"><span class="pubfont"></span>上一页</a><!-- Previous -->                         <a href="javascript: void(0);" bx-click="moveTo(1)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.3307">1</a>                    <a href="javascript: void(0);" class="btn btn-xlarge btn-current" data-spm-anchor-id="a219t.7900221/10.1998910419.3308">2</a>                    <a href="javascript: void(0);" bx-click="moveTo(3)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.3309">3</a>                    <a href="javascript: void(0);" bx-click="moveTo(4)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.3310">4</a>                    <a href="javascript: void(0);" bx-click="moveTo(5)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.3311">5</a>                    <a href="javascript: void(0);" bx-click="moveTo(6)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.3312">6</a>                    <a href="javascript: void(0);" bx-click="moveTo(7)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.3313">7</a>                    <span class="m n">...</span>               <a href="javascript: void(0);" bx-click="moveTo(100)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.3314">100</a>          <a href="javascript: void(0);" class="btn-last btn btn-xlarge btn-white" bx-click="moveTo(3)" data-spm-anchor-id="a219t.7900221/10.1998910419.3315">下一页<span class="pubfont"></span></a><!-- Next -->     </div>     <div class="go">     <span class="n">到第</span><input class="input" type="text" value="3"><span class="n">页</span><button class="btn btn-small btn-white" bx-click="goToPage()">确定</button>     </div>    </div></div>
+<!-- <div  id="J_item_list">
+	<div bx-name="app/exts/pagination/pagination" data-total="4000" data-limit="40" data-cursor="2">     
+		<div class="pagination-new">   
+			<div class="pagination">     
+
+               <a href="javascript: void(0);" class="btn-first btn btn-xlarge btn-unreach" bx-click="moveTo(0)" data-spm-anchor-id="a219t.7900221/10.1998910419.336"><span class="pubfont"></span>上一页</a>
+
+	         	<a href="javascript: void(0);" class="btn btn-xlarge btn-current" data-spm-anchor-id="a219t.7900221/10.1998910419.337">1</a>
+
+	            <a href="javascript: void(0);" bx-click="moveTo(2)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.338">2</a> 
+
+	           	<a href="javascript: void(0);" bx-click="moveTo(3)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.339">3</a>  
+
+	          	<a href="javascript: void(0);" bx-click="moveTo(4)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.340">4</a>
+
+	            <a href="javascript: void(0);" bx-click="moveTo(5)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.341">5</a>
+
+	            <a href="javascript: void(0);" bx-click="moveTo(6)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.342">6</a>
+
+	            <a href="javascript: void(0);" bx-click="moveTo(7)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.343">7</a>
+
+	         	<span class="m n">...</span>
+
+	       		<a href="javascript: void(0);" bx-click="moveTo(100)" class="btn btn-xlarge btn-white" data-spm-anchor-id="a219t.7900221/10.1998910419.344">100</a>
+
+	   		 	<a href="javascript: void(0);" class="btn-last btn btn-xlarge btn-white" bx-click="moveTo(2)" data-spm-anchor-id="a219t.7900221/10.1998910419.345">下一页<span class="pubfont"></span></a>
+
+			</div>     
+			<div class="go">     
+				<span class="n">到第</span><input class="input" value="2" type="text"><span class="n">页</span>
+				<button class="btn btn-small btn-white" bx-click="goToPage()">确定</button>     
+			</div>    
+		</div>
+
+	</div>
+</div> -->
+	
+<div class="pagination-new">
+    <div class="message">共<i class="blue">{$count}</i>条记录，当前显示第&nbsp;<i class="blue">{$_GET['p']}</i>&nbsp;页</div>
+	<div class="fenys">
+		{$page}
+	</div>
+
+<!-- 	<div class="go">     
+		<span class="n">到第</span><input class="input" value="2" type="text"><span class="n">页</span>
+		<button class="btn btn-small btn-white" bx-click="goToPage()">确定</button>     
+	</div>   --> 
 </div>
 
 <div class="container">
